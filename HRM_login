@@ -1,0 +1,20 @@
+# Auto login by using the css selector 
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+import time
+#here is the user name and password which we enter for the login purpose
+Username = "opensourcecms"
+password = "opensourcecms"
+#driver help to navigate or open the page
+driver = webdriver.Chrome('/home/faheem/Documents/workspace/scrapping/chromedriver_linux64/chromedriver')
+#link of the website provide here
+driver.get("https://s2.demo.opensourcecms.com/orangehrm/symfony/web/index.php/auth/login")
+Usernameentry = driver.find_element_by_xpath("//form//input[@id='txtUsername']") # by using the css selector
+Usernameentry.send_keys(Username)
+time.sleep(2)
+passentry = driver.find_element_by_css_selector('input#txtPassword') #by using the css selector
+passentry.send_keys(password)
+
+login = driver.find_element_by_css_selector('input[name="Submit"]').click()
+#logout = driver.find_element_by_xpath("//*[@id='option-menu']/li[3]/a").click()
+logout = driver.find_element_by_css_selector('ul#option-menu>li>a[target="_parent"]').click()
